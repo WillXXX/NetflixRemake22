@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import java.util.*
+import com.example.netflixremake22.model.Category
 
-//Essa é a lista vertical
-class CategoryAdapter(private val categories: List<Locale.Category>) :
+//Essa é a lista vertical**
+class CategoryAdapter(private val categories: MutableList<Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     //implementado metdos do Adapter
-    //O inflater infla o item da com a category
+    //O inflate infla o item da com a category
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
@@ -30,7 +30,7 @@ class CategoryAdapter(private val categories: List<Locale.Category>) :
     }
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(category: Locale.Category) {
+        fun bind(category: Category) {
 
             //Buscar elementos do categoty_item =text_view + RecyclerView
             val txtTitle: TextView = itemView.findViewById(R.id.txt_title)
@@ -38,9 +38,9 @@ class CategoryAdapter(private val categories: List<Locale.Category>) :
 
             val rvCategory: RecyclerView = itemView.findViewById(R.id.rv_category)
             //rv_category do tipo RecyclerView
-
-            rvCategory.layoutManager = LinearLayoutManager(itemView.context)
-          //**falta terminar AQUI***  rvCategory.adapter = MovieAdapter(category.movies)
+            rvCategory.layoutManager =
+                LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+            rvCategory.adapter = MovieAdapter(category.movies)
         }
 
     }

@@ -11,7 +11,7 @@ import com.example.netflixremake22.model.Movie
 class MovieAdapter(private val movies: List<Movie>) :
     RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
-    //implementado metdos do Adapter
+    //implementado metodos do Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item, parent, false)
         return MovieViewHolder(view)

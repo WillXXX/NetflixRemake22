@@ -6,8 +6,7 @@
     android:background="@color/black">
 
 
-    //RecyclerView Vertical
-
+    //RecyclerView Vertical**
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main"
         android:layout_width="match_parent"
@@ -15,5 +14,6 @@
         tools:ignore="MissingConstraints"
         tools:listitem="@layout/category_item" />
     //category_item preenche as celulas
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
