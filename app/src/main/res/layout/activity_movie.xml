@@ -24,6 +24,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
+        android:id="@+id/imageView"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:src="@drawable/ic_play"
@@ -81,13 +82,26 @@
         teste ,teste, testeteste, teste, teste ,teste, testeteste, teste, teste ,teste,
         teste" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/text_fixed"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:text="@string/similar"-->
-<!--        android:textColor="@color/white"-->
-<!--        app:layout_constraintBaseline_toBottomOf="@id/movie_txt_cast"-->
-<!--        />-->
+    <TextView
+        android:id="@+id/text_fixed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/similar"
+        android:textAllCaps="true"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/movie_txt_cast" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movie_rv_similar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_fixed" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

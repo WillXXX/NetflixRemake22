@@ -4,13 +4,25 @@ import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import org.w3c.dom.Text
 
 class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
+
+        val txtTitle: TextView = findViewById(R.id.movie_txt_title)
+        val txtDesc: TextView = findViewById(R.id.movie_txt_desc)
+        val txtcast: TextView = findViewById(R.id.movie_txt_cast)
+        val rv: RecyclerView = findViewById(R.id.movie_rv_similar)
+
+        txtTitle.text = "Batman Begins"
+        txtDesc.text = "Essa é a descrição do filme"
+        txtcast.text = getString(R.string.cast,"ator A, ator B, Atriz A")
 
         val toolbar: Toolbar = findViewById(R.id.movie_toolbar)
         setSupportActionBar(toolbar)
@@ -19,7 +31,8 @@ class MovieActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         //buscar desenhavel(layerlist)
-        val layerDrawable: LayerDrawable = ContextCompat.getDrawable(this, R.drawable.shadows) as LayerDrawable
+        val layerDrawable: LayerDrawable =
+            ContextCompat.getDrawable(this, R.drawable.shadows) as LayerDrawable
         //buscar filme()
         val movieCover = ContextCompat.getDrawable(this, R.drawable.movie_4)
         //atribui a essse layerList novo filme
