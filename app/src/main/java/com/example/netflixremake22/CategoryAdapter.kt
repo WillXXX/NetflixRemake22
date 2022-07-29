@@ -40,7 +40,7 @@ class CategoryAdapter(private val categories: MutableList<Category>) :
             //rv_category do tipo RecyclerView
             rvCategory.layoutManager =
                 LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
-            rvCategory.adapter = MovieAdapter(category.movies)
+            rvCategory.adapter = MovieAdapter(category.movies, R.layout.movie_item)
         }
 
     }
