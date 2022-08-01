@@ -27,10 +27,7 @@ class MovieActivity : AppCompatActivity() {
         txtcast.text = getString(R.string.cast,"ator A, ator B, Atriz A")
 
         val movies = mutableListOf<Movie>()
-        for (i in 0 until 15){
-            val movie = Movie(R.drawable.movie)
-            movies.add(movie)
-        }
+
         rv.layoutManager = GridLayoutManager(this, 3)
         rv.adapter = MovieAdapter(movies,R.layout.movie_item_similar)
 
