@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
 
-        CategoryTask(this).execulte("https://api.tiagoaguiar.co/netflixapp/homeim?apiKey=6b73fe1d-4643-4fd9-8d52-00aa7d44cce4")
+        CategoryTask(this).execulte("https://api.tiagoaguiar.co/netflixapp/home?apiKey=6b73fe1d-4643-4fd9-8d52-00aa7d44cce4")
+    }
+
+    override fun onPreExecute() {
+
     }
 
     //implementando o onResult

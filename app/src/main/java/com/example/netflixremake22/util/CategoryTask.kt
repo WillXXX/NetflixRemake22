@@ -23,18 +23,22 @@ class CategoryTask(private val callback: Callback) {
     private val handler = Handler(Looper.getMainLooper())
 
     interface Callback {
+        fun onPreExecute()
         fun onResult(categories: List<Category>)
         fun onFailure(message: String)
     }
 
     fun execulte(url: String) {
+
+        val executor = Executors.newSingleThreadExecutor()
+
+
         var urlConnection: HttpURLConnection? = null
         var buffer: BufferedInputStream? = null
         var stream: InputStream? = null
 
         try {
 
-            val executor = Executors.newSingleThreadExecutor()
 
             executor.execute {
                 val requestURL = URL(url) //abrir Url
