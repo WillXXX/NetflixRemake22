@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake22.model.Movie
+import com.squareup.picasso.Picasso
 
 //Essa é a lista Horizontal
 class MovieAdapter(
@@ -34,7 +35,9 @@ class MovieAdapter(
         fun bind(movie: Movie) {
             //chamando "imageCover, do tipo ImageView"
             val imageCover: ImageView = itemView.findViewById(R.id.img_cover)
-            //imageCover.setImageResource(movie.coverUrl)
+            Picasso.get()
+                .load(movie.coverURL)
+                .into(imageCover)
         }
 
     }
