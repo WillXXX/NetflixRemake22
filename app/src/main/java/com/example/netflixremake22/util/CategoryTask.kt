@@ -29,6 +29,7 @@ class CategoryTask(private val callback: Callback) {
     }
 
     fun execulte(url: String) {
+        callback.onPreExecute()
 
         val executor = Executors.newSingleThreadExecutor()
 

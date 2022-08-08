@@ -3,6 +3,8 @@ package com.example.netflixremake22
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,16 +13,19 @@ import com.example.netflixremake22.model.Movie
 import com.example.netflixremake22.util.CategoryTask
 
 class MainActivity : AppCompatActivity(), CategoryTask.Callback {
-    //implementado o callback para trazer ele (CategoryTask.Callback)
+    private lateinit var progress: ProgressBar
+    private lateinit var adapter: CategoryAdapter
+    private val categories = mutableListOf<Category>()
+
 
     //padrão MVC (model - view/controller)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val categories = mutableListOf<Category>()
+        progress = findViewById(R.id.progress_main)
 
-        val adapter = CategoryAdapter(categories)
+        adapter = CategoryAdapter(categories)
         val rv: RecyclerView = findViewById(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
@@ -29,16 +34,21 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
     }
 
     override fun onPreExecute() {
+        progress.visibility = View.VISIBLE
 
     }
 
     //implementando o onResult
     override fun onResult(categories: List<Category>) {
+        this.categories.clear()
+        this.categories.addAll(categories)
+        adapter.notifyDataSetChanged()//esse metodo força o adapter chamar novamente o onBindViewHolder
 
-        Log.i("Teste", categories.toString())
+        progress.visibility = View.GONE
     }
 
     override fun onFailure(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        progress.visibility = View.GONE
     }
 }
