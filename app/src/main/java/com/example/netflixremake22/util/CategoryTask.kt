@@ -21,6 +21,8 @@ class CategoryTask(private val callback: Callback) {
     //(entre os parenteses fica o construtor)
 
     private val handler = Handler(Looper.getMainLooper())
+    private val executor = Executors.newSingleThreadExecutor()
+
 
     interface Callback {
         fun onPreExecute()
@@ -30,9 +32,6 @@ class CategoryTask(private val callback: Callback) {
 
     fun execulte(url: String) {
         callback.onPreExecute()
-
-        val executor = Executors.newSingleThreadExecutor()
-
 
         var urlConnection: HttpURLConnection? = null
         var buffer: BufferedInputStream? = null

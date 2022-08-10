@@ -33,7 +33,7 @@ class MovieAdapter(
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(movie: Movie) {
-            //chamando "imageCover, do tipo ImageView"
+            //Picasso
             val imageCover: ImageView = itemView.findViewById(R.id.img_cover)
             Picasso.get()
                 .load(movie.coverURL)
