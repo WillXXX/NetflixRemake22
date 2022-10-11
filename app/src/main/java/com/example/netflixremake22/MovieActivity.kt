@@ -3,6 +3,7 @@ package com.example.netflixremake22
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.widget.Toolbar
@@ -10,7 +11,6 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake22.model.Movie
-import org.w3c.dom.Text
 
 class MovieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,12 +24,12 @@ class MovieActivity : AppCompatActivity() {
 
         txtTitle.text = "Batman Begins"
         txtDesc.text = "Essa é a descrição do filme"
-        txtcast.text = getString(R.string.cast,"ator A, ator B, Atriz A")
+        txtcast.text = getString(R.string.cast, "ator A, ator B, Atriz A")
 
         val movies = mutableListOf<Movie>()
 
         rv.layoutManager = GridLayoutManager(this, 3)
-        rv.adapter = MovieAdapter(movies,R.layout.movie_item_similar)
+        rv.adapter = MovieAdapter(movies, R.layout.movie_item_similar)
 
         val toolbar: Toolbar = findViewById(R.id.movie_toolbar)
         setSupportActionBar(toolbar)
@@ -48,4 +48,12 @@ class MovieActivity : AppCompatActivity() {
         val coverImg: ImageView = findViewById(R.id.movie_img)
         coverImg.setImageDrawable(layerDrawable)
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == android.R.id.home) {
+            finish()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }

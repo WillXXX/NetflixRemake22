@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake22.model.Category
 
 //Essa é a lista vertical**
-class CategoryAdapter(private val categories: MutableList<Category>) :
-    RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
+class CategoryAdapter(
+    private val categories: MutableList<Category>,
+    private val onItemClickListener: (Int) -> Unit
+    ) : RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
 
     //implementado metdos do Adapter
     //O inflate infla o item da com a category
@@ -38,9 +40,8 @@ class CategoryAdapter(private val categories: MutableList<Category>) :
 
             val rvCategory: RecyclerView = itemView.findViewById(R.id.rv_category)
             //rv_category do tipo RecyclerView
-            rvCategory.layoutManager =
-                LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
-            rvCategory.adapter = MovieAdapter(category.movies, R.layout.movie_item)
+            rvCategory.layoutManager =LinearLayoutManager(itemView.context, RecyclerView.HORIZONTAL, false)
+            rvCategory.adapter = MovieAdapter(category.movies, R.layout.movie_item, onItemClickListener)
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.netflixremake22
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,6 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
     private lateinit var adapter: CategoryAdapter
     private val categories = mutableListOf<Category>()
 
-
     //padrão MVC (model - view/controller)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +25,11 @@ class MainActivity : AppCompatActivity(), CategoryTask.Callback {
 
         progress = findViewById(R.id.progress_main)
 
-        adapter = CategoryAdapter(categories)
+        adapter = CategoryAdapter(categories) { id ->
+            val intent = Intent(this@MainActivity, MovieActivity::class.java)
+            intent.putExtra("id", id)
+            startActivity(intent)
+        }
         val rv: RecyclerView = findViewById(R.id.rv_main)
         rv.layoutManager = LinearLayoutManager(this)
         rv.adapter = adapter
