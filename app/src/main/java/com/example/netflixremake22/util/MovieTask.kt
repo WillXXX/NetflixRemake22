@@ -53,6 +53,11 @@ class MovieTask(private val callback: Callback) {
                     stream = urlConnection.errorStream
                     buffer = BufferedInputStream(stream)
                     val jsonAsString = toString(buffer!!)
+
+                    val json = JSONObject(jsonAsString)
+                    val message = json.getString("message")
+                    throw IOException(message)
+
                 } else if (statusCode > 400) {
                     throw IOException("Erro na comunicação com o servidor!")
                 }
@@ -107,7 +112,7 @@ class MovieTask(private val callback: Callback) {
 
             val m = Movie(similarId, similarCoverUrl)
             similars.add(m)
-        }
+        } //loop lista de similares
 
         val movie = Movie(id, coverUrl, desc, cast)
         return MovieDetail(movie, similars)

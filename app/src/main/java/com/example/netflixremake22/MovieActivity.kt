@@ -3,16 +3,20 @@ package com.example.netflixremake22
 import android.graphics.drawable.LayerDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.netflixremake22.model.Movie
+import com.example.netflixremake22.model.MovieDetail
+import com.example.netflixremake22.util.MovieTask
 
-class MovieActivity : AppCompatActivity() {
+class MovieActivity : AppCompatActivity(), MovieTask.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie)
@@ -21,6 +25,13 @@ class MovieActivity : AppCompatActivity() {
         val txtDesc: TextView = findViewById(R.id.movie_txt_desc)
         val txtcast: TextView = findViewById(R.id.movie_txt_cast)
         val rv: RecyclerView = findViewById(R.id.movie_rv_similar)
+
+        val id =
+            intent?.getIntExtra("id", 0) ?: throw IllegalStateException("ID não foi encontrado!")
+        val url = "https://api.tiagoaguiar.co/netflixapp/movie/1?apiKey=6b73fe1d-4643-4fd9-8d52-00aa7d44cce4"
+
+        MovieTask(this).execulte(url)
+        //chamando servidor
 
         txtTitle.text = "Batman Begins"
         txtDesc.text = "Essa é a descrição do filme"
@@ -47,6 +58,18 @@ class MovieActivity : AppCompatActivity() {
         //setar no imageView
         val coverImg: ImageView = findViewById(R.id.movie_img)
         coverImg.setImageDrawable(layerDrawable)
+    }
+
+    override fun onPreExecute() {
+
+    }
+
+    override fun onFailure(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onResult(movieDetail: MovieDetail) {
+        Log.i("Teste", movieDetail.toString())
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
