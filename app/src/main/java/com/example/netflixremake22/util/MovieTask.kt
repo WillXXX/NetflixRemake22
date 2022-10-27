@@ -114,7 +114,7 @@ class MovieTask(private val callback: Callback) {
             similars.add(m)
         } //loop lista de similares
 
-        val movie = Movie(id, coverUrl, desc, cast)
+        val movie = Movie(id, coverUrl, title, desc, cast)
         return MovieDetail(movie, similars)
     }
 

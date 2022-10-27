@@ -26,10 +26,10 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
         val txtcast: TextView = findViewById(R.id.movie_txt_cast)
         val rv: RecyclerView = findViewById(R.id.movie_rv_similar)
 
-        val id =
-            intent?.getIntExtra("id", 0) ?: throw IllegalStateException("ID não foi encontrado!")
-        val url = "https://api.tiagoaguiar.co/netflixapp/movie/1?apiKey=6b73fe1d-4643-4fd9-8d52-00aa7d44cce4"
+        val id =intent?.getIntExtra("id", 0) ?: throw IllegalStateException("ID não foi encontrado!")
 
+        val url = "https://api.tiagoaguiar.co/netflixapp/movie/$id?apiKey=6b73fe1d-4643-4fd9-8d52-00aa7d44cce4"
+                                                              //$d é o valor deinamico
         MovieTask(this).execulte(url)
         //chamando servidor
 
@@ -65,7 +65,7 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
     }
 
     override fun onFailure(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onResult(movieDetail: MovieDetail) {
