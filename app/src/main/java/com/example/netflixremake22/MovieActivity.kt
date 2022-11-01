@@ -65,6 +65,10 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
+    override fun DowloadImageTask(param: DownloadImageTask.Callback) {
+
+    }
+
     override fun onResult(movieDetail: MovieDetail) {
         progress.visibility = View.GONE
 
@@ -75,7 +79,6 @@ class MovieActivity : AppCompatActivity(), MovieTask.Callback {
         movies.clear()
         movies.addAll(movieDetail.similars)
         adapter.notifyDataSetChanged()
-
 
         DownloadImageTask(object : DownloadImageTask.Callback{
             override fun onResult(bitmap: Bitmap) {
